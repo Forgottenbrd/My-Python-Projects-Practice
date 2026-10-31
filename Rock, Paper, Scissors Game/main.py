@@ -1,12 +1,20 @@
 
 import random
-
 while True:
-    player_chose = input("rock, paper, or scissors? (r/p/s): ")
+    while True:
+        try:
+            player_chose = input("rock, paper, or scissors? (r/p/s): ")
+            options = ["r","p","s"]
 
-    options = ["r","p","s"]
+            computer_chose = random.choice(options)
 
-    computer_chose = random.choice(options)
+            if player_chose in options:
+                break
+            else:
+                raise ValueError
+        except:
+            print(f"Only choose from {options} ")
+
 
     print(f"You chose {player_chose}")
     print(f"Computer chose {computer_chose}")
@@ -20,10 +28,17 @@ while True:
     else:
         print("You lose")
 
+    again = (input("Continue? (y/n): ")).lower()
+
+    if again == "n":
+        break
+    else:
+        pass
+
+
 
 
 
 # r == "🪨"
 # p == "📄"
 # s == "✂️"
-
