@@ -1,13 +1,16 @@
 
 import random
+# Main loop
 while True:
+    # Input loop
     while True:
         try:
-            player_chose = input("rock, paper, or scissors? (r/p/s): ")
+            # Input
+            player_chose = input("rock, paper, or scissors? (r/p/s): ").lower()
             options = ["r","p","s"]
 
             computer_chose = random.choice(options)
-
+            # Error check
             if player_chose in options:
                 break
             else:
@@ -15,30 +18,34 @@ while True:
         except:
             print(f"Only choose from {options} ")
 
-
-    print(f"You chose {player_chose}")
-    print(f"Computer chose {computer_chose}")
-
+    # winning conditions
     player_win = [("r","s"), ("p","r"),("s","p")]
 
+    # Winning logic
     if player_chose == computer_chose:
-        print("It is a draw")
+        the_result = ("It is a draw")
     elif (player_chose, computer_chose) in player_win: 
-        print("You win!!!")
+        the_result = ("You win!!!")
     else:
-        print("You lose")
+        the_result = ("You lose")
+
+    emojis = {"r": "🪨", "p": "📄", "s": "✂️"}
+
+    # Chose show
+    print(f"You chose {emojis[player_chose]}")
+    print(f"Computer chose {emojis[computer_chose]}")
+    print(the_result)
 
     again = (input("Continue? (y/n): ")).lower()
-
+    # Mian loop break
     if again == "n":
         break
-    else:
+    else: 
         pass
 
 
 
+    # "r" == "🪨"
+    # "p" == "📄"
+    # "s" == "✂️"
 
-
-# r == "🪨"
-# p == "📄"
-# s == "✂️"
