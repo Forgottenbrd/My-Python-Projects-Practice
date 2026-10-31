@@ -36,16 +36,17 @@ while True:
     print(f"Computer chose {emojis[computer_chose]}")
     print(the_result)
 
-    again = (input("Continue? (y/n): ")).lower()
     # Mian loop break
+
+    while True:
+        again = (input("Continue? (y/n): ")).lower()
+
+        if again in ("y","n"):
+            break
+        else: 
+            print("Please enter only (y/n)")
+
     if again == "n":
         break
-    else: 
+    else:
         pass
-
-
-
-    # "r" == "🪨"
-    # "p" == "📄"
-    # "s" == "✂️"
-
