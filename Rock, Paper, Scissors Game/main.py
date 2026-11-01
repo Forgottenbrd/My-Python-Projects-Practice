@@ -1,6 +1,8 @@
 
 import random
+# Input!!!----------------------------------------------------------------------------------------------------
 # Main loop
+
 while True:
     # Input loop
     while True:
@@ -18,6 +20,7 @@ while True:
         except:
             print(f"Only choose from {options} ")
 
+# Logic!!!----------------------------------------------------------------------------------------------------
     # winning conditions
     player_win = [("r","s"), ("p","r"),("s","p")]
 
@@ -31,13 +34,14 @@ while True:
 
     emojis = {"r": "🪨", "p": "📄", "s": "✂️"}
 
+# Show!!!----------------------------------------------------------------------------------------------------
     # Chose show
     print(f"You chose {emojis[player_chose]}")
     print(f"Computer chose {emojis[computer_chose]}")
     print(the_result)
 
+# Repaly!!!----------------------------------------------------------------------------------------------------
     # Mian loop break
-
     while True:
         again = (input("Continue? (y/n): ")).lower()
 
