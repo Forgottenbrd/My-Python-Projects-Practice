@@ -131,6 +131,21 @@ def main():
         
         
     elif game_mode == "3":
-        pass
+        name1 = "Player 1"
+        name2 = "Player 2"
+        the_line()
+        print("Welcome to 2 player game mode.")
+        playing = True
+        while playing:    
+            print(f"{name1}: ")
+            choice1 = get_player_choice()
+            print(f"{name2}: ")
+            choice2 = get_player_choice()
+            the_winner = decide_the_winner(choice1, choice2)
+            show_the_round(the_winner, name1, choice1, name2, choice2)
+            playing = replay()
+
+
+
 if __name__ == "__main__":
     main()
