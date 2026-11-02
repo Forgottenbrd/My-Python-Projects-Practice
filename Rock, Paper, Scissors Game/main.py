@@ -108,9 +108,7 @@ def main():
         round_number = 0
         scores = {"PLAYER1_WINS": 0, "PLAYER2_WINS": 0, "DRAW": 0}
         playing = True
-        while playing:
-            if round_number == 3-1:
-                playing = False
+        while round_number < 3:
             round_number += 1
             the_line()
             print(f"Round {round_number} Start!")
@@ -121,28 +119,28 @@ def main():
             show_the_round(the_winner, name1, choice1, name2, choice2)
         if scores["PLAYER1_WINS"] > scores["PLAYER2_WINS"]:
             the_line()
-            print(f"{name1} have won the match!")
+            print(f"{name1} has won the match!")
         elif scores["PLAYER2_WINS"] > scores["PLAYER1_WINS"]:
             the_line()
-            print(f"{name2} have won the match!")
+            print(f"{name2} has won the match!")
         else:
             the_line()
             print("The match was a draw!")
         
         
     elif game_mode == "3":
-        name1 = "Player 1"
-        name2 = "Player 2"
+        duelist1 = "Traveler 1"
+        duelist2 = "Traveler 2"
         the_line()
         print("Welcome to 2 player game mode.")
         playing = True
         while playing:    
-            print(f"{name1}: ")
+            print(f"{duelist1}: ")
             choice1 = get_player_choice()
-            print(f"{name2}: ")
+            print(f"{duelist2}: ")
             choice2 = get_player_choice()
             the_winner = decide_the_winner(choice1, choice2)
-            show_the_round(the_winner, name1, choice1, name2, choice2)
+            show_the_round(the_winner, duelist1, choice1, duelist2, choice2)
             playing = replay()
 
 
