@@ -4,11 +4,34 @@ import random
 OPTIONS = ["r","p","s"]
 WINNING_RULES = [("r","s"), ("p","r"),("s","p")]
 EMOJIS = {"r": "🪨", "p": "📄", "s": "✂️"}
+GAME_MODES = {
+    "1": "Classic - one round at a time",
+    "2": "Best of Three - first to win two rounds",
+    "3": "Two Players - challenge a friend",
+}
 # name of players
 name1 = "Player"
 name2 = "Computer"
 
 
+def greeting():
+    print("Welcome! to my Rock, Paper, Scissors game!\nPlease enjoy your time here!")
+def get_game_mode():
+    '''Asking the Game mode.
+    Returning the the game mode number.
+    '''
+    print("=" * 40)
+    print("Choose your game mode:")
+    for key, game_mode in GAME_MODES.items():
+        print(f"{key}) {game_mode}")
+    asking = True
+    while asking:
+        game_mode = input("Enter your mode (1/2/3): ").strip()
+        if game_mode in GAME_MODES:
+            asking = False
+        else:
+            print("Please choose 1, 2 or 3.")
+    return game_mode
 def get_player_choice():
         '''Getting the input from the player and matching it against the "OPTIONS" variable.
         else, asking to chose from option agin.
@@ -40,15 +63,15 @@ def decide_the_winner(choice1, choice2):
     else:
         the_result = "PLAYER2_WINS"
     return the_result
-def show_the_round(the_winning_number, name1, choice1, name2, choice2):
+def show_the_round(the_winner, name1, choice1, name2, choice2):
     '''It takes the_winning_number, name1, choice1, name2, choice2 and decide the winner and prints everything.
     '''
     print(f"{name1} chose {EMOJIS[choice1]}")
     print(f"{name2} chose {EMOJIS[choice2]}")
-    if the_winning_number == "PLAYER1_WINS":
+    if the_winner == "PLAYER1_WINS":
         print(f"The winner is {name1}")
-    elif the_winning_number == "PLAYER2_WINS":
-        print(f"The winner is {name2}")
+    elif the_winner == "PLAYER2_WINS":
+        print(f"The winner of this round is {name2}")
     else:
         print("It is a draw!")
 def replay():
@@ -65,14 +88,49 @@ def replay():
         else:
             print("Please enter only (y/n)")
     return result
-def main():
-    playing = True
-    while playing:
-        choice1 = get_player_choice()
-        choice2 = get_computer_choice()
-        the_winning_number = decide_the_winner(choice1, choice2)
-        show_the_round(the_winning_number, name1, choice1, name2, choice2)
-        playing = replay()
+def the_line():
+    print("=" * 40)
 
+def main():
+    greeting()
+    game_mode = get_game_mode()
+
+    if game_mode == "1":
+        playing = True
+        while playing:
+            choice1 = get_player_choice()
+            choice2 = get_computer_choice()
+            the_winner = decide_the_winner(choice1, choice2)
+            show_the_round(the_winner, name1, choice1, name2, choice2)
+            playing = replay()
+
+    elif game_mode == "2":
+        round_number = 0
+        scores = {"PLAYER1_WINS": 0, "PLAYER2_WINS": 0, "DRAW": 0}
+        playing = True
+        while playing:
+            if round_number == 3-1:
+                playing = False
+            round_number += 1
+            the_line()
+            print(f"Round {round_number} Start!")
+            choice1 = get_player_choice()
+            choice2 = get_computer_choice()
+            the_winner = decide_the_winner(choice1, choice2)
+            scores[the_winner] += 1
+            show_the_round(the_winner, name1, choice1, name2, choice2)
+        if scores["PLAYER1_WINS"] > scores["PLAYER2_WINS"]:
+            the_line()
+            print(f"{name1} have won the match!")
+        elif scores["PLAYER2_WINS"] > scores["PLAYER1_WINS"]:
+            the_line()
+            print(f"{name2} have won the match!")
+        else:
+            the_line()
+            print("The match was a draw!")
+        
+        
+    elif game_mode == "3":
+        pass
 if __name__ == "__main__":
     main()
